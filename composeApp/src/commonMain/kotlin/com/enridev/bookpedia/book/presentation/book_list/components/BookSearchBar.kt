@@ -20,14 +20,16 @@ import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import cmp_bookpedia.composeapp.generated.resources.Res
 import cmp_bookpedia.composeapp.generated.resources.close_hint
 import cmp_bookpedia.composeapp.generated.resources.search_hint
 import com.enridev.bookpedia.core.presentation.DarkBlue
-import com.enridev.bookpedia.core.presentation.DesertWhite
-import com.enridev.bookpedia.core.presentation.SandYellow
+import com.enridev.bookpedia.core.presentation.VividBlue
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -39,17 +41,18 @@ fun BookSearchBar(
 ) {
     CompositionLocalProvider(
         LocalTextSelectionColors provides TextSelectionColors(
-            handleColor = SandYellow,
-            backgroundColor = SandYellow
+            handleColor = VividBlue,
+            backgroundColor = VividBlue
         )
     ) {
         OutlinedTextField(
             value = searchQuery,
             onValueChange = onSearchQueryChange,
-            shape = RoundedCornerShape(100),
+            shape = RoundedCornerShape(25),
             colors = OutlinedTextFieldDefaults.colors(
                 cursorColor = DarkBlue,
-                focusedBorderColor = SandYellow
+                focusedBorderColor = VividBlue,
+                unfocusedBorderColor = Color.Transparent
             ),
             placeholder = {
                 Text(
@@ -92,8 +95,20 @@ fun BookSearchBar(
             },
             modifier = modifier
                 .background(
-                    shape = RoundedCornerShape(100),
-                    color = DesertWhite
+                    color = Color.Black.copy(alpha = 0.3f),
+                    shape = RoundedCornerShape(25)
+                ).minimumInteractiveComponentSize()
+
+                .graphicsLayer {
+                    shadowElevation = 8.dp.toPx() // Shadow elevation
+                    shape = RoundedCornerShape(8.dp) // Use rounded corners if needed
+                    clip = false // Ensures the shadow isn't clipped by the bounds
+                    translationX = -5.dp.toPx() // Translate shadow horizontally
+                    translationY = -5.dp.toPx() // Translate shadow vertically
+                }
+                .background(
+                    shape = RoundedCornerShape(25),
+                    color = Color.White
                 )
                 .minimumInteractiveComponentSize()
         )

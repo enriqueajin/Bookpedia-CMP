@@ -1,16 +1,16 @@
 package com.enridev.bookpedia.app
 
 import androidx.compose.runtime.Composable
-import com.enridev.bookpedia.book.presentation.book_list.BookListScreen
-import com.enridev.bookpedia.book.presentation.book_list.BookListState
-import com.enridev.bookpedia.book.presentation.book_list.books
+import androidx.compose.runtime.remember
+import com.enridev.bookpedia.book.presentation.book_list.BookListScreenRoot
+import com.enridev.bookpedia.book.presentation.book_list.BookListViewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
 fun App() {
-    BookListScreen(
-        state = BookListState(searchResults = books),
-        onAction = { }
+    BookListScreenRoot(
+        viewModel = remember { BookListViewModel() },
+        onBookClick = {}
     )
 }

@@ -4,13 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.enridev.bookpedia.book.domain.Book
-import com.enridev.bookpedia.book.presentation.book_list.BookListScreen
-import com.enridev.bookpedia.book.presentation.book_list.BookListState
-import com.enridev.bookpedia.book.presentation.book_list.books
+import com.enridev.bookpedia.book.presentation.book_list.BookListScreenRoot
+import com.enridev.bookpedia.book.presentation.book_list.BookListViewModel
 import com.enridev.bookpedia.book.presentation.book_list.components.BookListItem
 import com.enridev.bookpedia.book.presentation.book_list.components.BookSearchBar
 
@@ -59,16 +59,11 @@ fun BookListItemPreview() {
     }
 }
 
-@Preview(showSystemUi = true)
+@Preview
 @Composable
 fun BookListScreenPreview() {
-    Box(
-        modifier = Modifier
-            .background(Color.White)
-    ) {
-        BookListScreen(
-            state = BookListState(searchResults = books),
-            onAction = {}
-        )
-    }
+    BookListScreenRoot(
+        viewModel = remember { BookListViewModel() },
+        onBookClick = {}
+    )
 }

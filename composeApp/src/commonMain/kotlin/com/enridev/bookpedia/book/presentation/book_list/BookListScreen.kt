@@ -78,9 +78,7 @@ fun BookListScreen(
     }
 
     LaunchedEffect(pagerState.currentPage) {
-        if (!pagerState.isScrollInProgress) {
-            onAction(BookListAction.OnTabSelected(pagerState.currentPage))
-        }
+        onAction(BookListAction.OnTabSelected(pagerState.currentPage))
     }
 
     Column(
@@ -147,7 +145,7 @@ fun BookListScreen(
             Tab(
                 selected = state.selectedTabIndex == 1,
                 onClick = {
-                    onAction(BookListAction.OnTabSelected(0))
+                    onAction(BookListAction.OnTabSelected(1))
                 },
                 modifier = Modifier
                     .padding(vertical = 10.dp)
